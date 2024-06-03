@@ -29,7 +29,7 @@ class WeatherViewController: UIViewController {
     
     locationManager.delegate = self
     searchField.delegate = self
-    jokeButton.setTitle("Dad Joke", for: .normal)
+    self.navigationItem.backBarButtonItem = UIBarButtonItem(title:  "戻る", style:  .plain, target: nil, action: nil)
   }
 }
 
