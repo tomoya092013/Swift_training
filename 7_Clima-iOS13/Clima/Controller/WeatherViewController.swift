@@ -27,6 +27,7 @@ class WeatherViewController: UIViewController {
     locationManager.delegate = self
     weatherManager.delegate = self
     searchField.delegate = self
+    self.navigationItem.backBarButtonItem = UIBarButtonItem(title:  "戻る", style:  .plain, target: nil, action: nil)
   }
   
   
