@@ -31,6 +31,11 @@ class WeatherViewController: UIViewController {
     searchField.delegate = self
     self.navigationItem.backBarButtonItem = UIBarButtonItem(title:  "戻る", style:  .plain, target: nil, action: nil)
   }
+  
+  @IBAction func navigateToNewPage(_ sender: Any) {
+    self.performSegue(withIdentifier: "toSecond", sender: self)
+  }
+
 }
 
 //MARK:- TextField extension

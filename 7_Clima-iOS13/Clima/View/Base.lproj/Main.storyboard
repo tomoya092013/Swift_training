@@ -71,8 +71,7 @@
                                                 <color key="tintColor" systemColor="labelColor"/>
                                                 <state key="normal" backgroundImage="star"/>
                                                 <connections>
-                                                    <action selector="locationButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="s17-bQ-3B5"/>
-                                                    <segue destination="1aa-Zp-ZGu" kind="show" id="pgA-KC-2If"/>
+                                                    <action selector="navigateToNewPage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mq4-GW-xyF"/>
                                                 </connections>
                                             </button>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cloud.rain" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="mYn-vV-MBC">
@@ -148,6 +147,7 @@
                         <outlet property="jokeField" destination="zli-kf-Fw3" id="igq-dy-jgY"/>
                         <outlet property="searchField" destination="2eh-wL-W34" id="Mdn-d0-ZRy"/>
                         <outlet property="temperatureLabel" destination="w9o-tW-03D" id="mF4-vV-JxK"/>
+                        <segue destination="1aa-Zp-ZGu" kind="show" identifier="toSecond" id="W1v-6z-6Wq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -172,6 +172,7 @@
                         <viewLayoutGuide key="safeArea" id="Mr7-7E-7fp"/>
                         <color key="backgroundColor" systemColor="systemMintColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="lho-7b-D2R"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jfa-aL-CTl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
