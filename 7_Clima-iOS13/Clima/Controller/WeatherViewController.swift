@@ -21,16 +21,14 @@ class WeatherViewController: UIViewController {
   
   //MARK: Properties
   var weatherManager = WeatherDataManager()
-  var jokeManager = JokeDataManager()
   let locationManager = CLLocationManager()
+  let commonApi = CommonApi()
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
     locationManager.delegate = self
-    weatherManager.delegate = self
     searchField.delegate = self
-    jokeManager.delegate = self
     jokeButton.setTitle("Dad Joke", for: .normal)
   }
 }
@@ -45,10 +43,6 @@ extension WeatherViewController: UITextFieldDelegate {
     searchWeather()
   }
   
-  @IBAction func jokeButton(_ sender: UIButton) {
-    jokeManager.fetchJoke()
-  }
-  
   func changeBackgroundImage(_ cityName: String){
     if cityName == "Tokyo" {
       backgroundImage.image = UIImage(named: "AppIcon")
@@ -58,9 +52,21 @@ extension WeatherViewController: UITextFieldDelegate {
   }
   
   func searchWeather(){
-    if let cityName = searchField.text{
-      weatherManager.fetchWeather(cityName)
-      print("action: search, city: " + searchField.text!)
+    if let cityName = searchField.text {
+      let createdUrl = weatherManager.createFetchUrl(cityName)
+      if let url = URL(string: createdUrl) {
+        commonApi.getRequest(url: url, type: WeatherData.self,completionHandler: { (weatherData: WeatherData) in
+          DispatchQueue.main.sync {
+            let weatherModel = WeatherModel(cityName: weatherData.name, conditionId: weatherData.weather[0].id, temperature: weatherData.main.temp)
+            let conditionName = weatherModel.conditionName
+            let cityName = weatherModel.cityName
+            self.temperatureLabel.text = weatherModel.temperatureString
+            self.conditionImageView.image = UIImage(systemName: conditionName)
+            self.changeBackgroundImage(cityName)}
+        }, failedWithError: { (error) in
+          print(error)
+        })
+      }
     }
   }
   
@@ -86,24 +92,22 @@ extension WeatherViewController: UITextFieldDelegate {
   
   // when textfield stop editing (keyboard dismissed)
   func textFieldDidEndEditing(_ textField: UITextField) {
-    //        searchField.text = ""   // clear textField
+//            searchField.text = ""   // clear textField
   }
-}
-
-//MARK:- View update extension
-extension WeatherViewController: WeatherManagerDelegate {
   
-  func updateWeather(weatherModel: WeatherModel){
-    DispatchQueue.main.sync {
-      temperatureLabel.text = weatherModel.temperatureString
-      cityLabel.text = weatherModel.cityName
-      self.conditionImageView.image = UIImage(systemName: weatherModel.conditionName)
-      changeBackgroundImage(weatherModel.cityName)
+  @IBAction func jokeButton(_ sender: UIButton) {
+    
+    if let url = URL(string: "https://icanhazdadjoke.com/") {
+      
+      commonApi.getRequest(url: url, type: JokeData.self, completionHandler: { (jokeData: JokeData) in
+        DispatchQueue.main.sync {
+          let jokeModel = JokeModel(joke: jokeData.joke)
+          self.jokeField.text = jokeModel.joke
+        }
+      }, failedWithError: {(error) in
+        print(error)
+      })
     }
-  }
-  
-  func failedWithError(error: Error){
-    print(error)
   }
 }
 
@@ -121,18 +125,18 @@ extension WeatherViewController: CLLocationManagerDelegate {
     if let location = locations.last {
       let lat = location.coordinate.latitude
       let lon = location.coordinate.longitude
-      weatherManager.fetchWeather(lat, lon)
+      let createdUrl = weatherManager.createFetchUrl(lat, lon)
+      if let url = URL(string: createdUrl) {
+        commonApi.getRequest(url: url, type: WeatherData.self,completionHandler: { (weatherData: WeatherData) in
+          print(weatherData)
+        }, failedWithError: { (error) in
+          print(error)
+        })
+      }
     }
   }
+  
   func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
     print(error)
-  }
-}
-
-extension WeatherViewController: JokeManagerDelegate {
-  func updateJoke(jokeModel: JokeModel) {
-    DispatchQueue.main.sync {
-      jokeField.text = jokeModel.joke
-    }
   }
 }
