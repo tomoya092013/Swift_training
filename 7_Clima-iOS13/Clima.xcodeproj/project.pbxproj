@@ -10,7 +10,10 @@
 		7D64259624473AE800F1DD90 /* WeatherDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D64259524473AE800F1DD90 /* WeatherDataManager.swift */; };
 		7D6425982451AEA500F1DD90 /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6425972451AEA500F1DD90 /* WeatherData.swift */; };
 		7DB97A2C24585AB800C3BB03 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB97A2B24585AB800C3BB03 /* WeatherModel.swift */; };
-		9F47F8BC2C0C2EC0009ED54A /* light_background.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 9F47F8BB2C0C2EC0009ED54A /* light_background.pdf */; };
+		9F47F8C02C0DF84B009ED54A /* light_background.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 9F47F8BF2C0DF84B009ED54A /* light_background.pdf */; };
+		9FFCAB842C0F491C00AFF898 /* JokeDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFCAB832C0F491C00AFF898 /* JokeDataManager.swift */; };
+		9FFCAB862C0F495D00AFF898 /* JokeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFCAB852C0F495D00AFF898 /* JokeData.swift */; };
+		9FFCAB882C0F4D7B00AFF898 /* JokeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFCAB872C0F4D7B00AFF898 /* JokeModel.swift */; };
 		ADAA27B1231BBFAF00365194 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAA27B0231BBFAF00365194 /* AppDelegate.swift */; };
 		ADAA27B3231BBFAF00365194 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAA27B2231BBFAF00365194 /* SceneDelegate.swift */; };
 		ADAA27B5231BBFAF00365194 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAA27B4231BBFAF00365194 /* WeatherViewController.swift */; };
@@ -25,7 +28,10 @@
 		7D64259524473AE800F1DD90 /* WeatherDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDataManager.swift; sourceTree = "<group>"; };
 		7D6425972451AEA500F1DD90 /* WeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
 		7DB97A2B24585AB800C3BB03 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
-		9F47F8BB2C0C2EC0009ED54A /* light_background.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = light_background.pdf; path = "../../../../.Trash/swift_training/7_Clima-iOS13/Clima/light_background.pdf"; sourceTree = "<group>"; };
+		9F47F8BF2C0DF84B009ED54A /* light_background.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = light_background.pdf; path = "../../../../Swift-tutorial/7_Clima-iOS13/Clima/light_background.pdf"; sourceTree = "<group>"; };
+		9FFCAB832C0F491C00AFF898 /* JokeDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeDataManager.swift; sourceTree = "<group>"; };
+		9FFCAB852C0F495D00AFF898 /* JokeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeData.swift; sourceTree = "<group>"; };
+		9FFCAB872C0F4D7B00AFF898 /* JokeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeModel.swift; sourceTree = "<group>"; };
 		ADAA27AD231BBFAF00365194 /* Clima.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Clima.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADAA27B0231BBFAF00365194 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ADAA27B2231BBFAF00365194 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -79,7 +85,7 @@
 				ADAA27BB231BBFB300365194 /* LaunchScreen.storyboard */,
 				ADAA27BE231BBFB300365194 /* Info.plist */,
 				ADAA27C5231BC02B00365194 /* dark_background.pdf */,
-				9F47F8BB2C0C2EC0009ED54A /* light_background.pdf */,
+				9F47F8BF2C0DF84B009ED54A /* light_background.pdf */,
 			);
 			path = Clima;
 			sourceTree = "<group>";
@@ -106,6 +112,9 @@
 				7D64259524473AE800F1DD90 /* WeatherDataManager.swift */,
 				7D6425972451AEA500F1DD90 /* WeatherData.swift */,
 				7DB97A2B24585AB800C3BB03 /* WeatherModel.swift */,
+				9FFCAB832C0F491C00AFF898 /* JokeDataManager.swift */,
+				9FFCAB852C0F495D00AFF898 /* JokeData.swift */,
+				9FFCAB872C0F4D7B00AFF898 /* JokeModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -171,9 +180,9 @@
 				ADAA27CE231BC87F00365194 /* README.md in Resources */,
 				ADAA27C7231BC02C00365194 /* dark_background.pdf in Resources */,
 				ADAA27BD231BBFB300365194 /* LaunchScreen.storyboard in Resources */,
+				9F47F8C02C0DF84B009ED54A /* light_background.pdf in Resources */,
 				ADAA27BA231BBFB300365194 /* Assets.xcassets in Resources */,
 				ADAA27B8231BBFAF00365194 /* Main.storyboard in Resources */,
-				9F47F8BC2C0C2EC0009ED54A /* light_background.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -188,8 +197,11 @@
 				7D6425982451AEA500F1DD90 /* WeatherData.swift in Sources */,
 				ADAA27B5231BBFAF00365194 /* WeatherViewController.swift in Sources */,
 				ADAA27B1231BBFAF00365194 /* AppDelegate.swift in Sources */,
+				9FFCAB862C0F495D00AFF898 /* JokeData.swift in Sources */,
 				7DB97A2C24585AB800C3BB03 /* WeatherModel.swift in Sources */,
+				9FFCAB842C0F491C00AFF898 /* JokeDataManager.swift in Sources */,
 				ADAA27B3231BBFAF00365194 /* SceneDelegate.swift in Sources */,
+				9FFCAB882C0F4D7B00AFF898 /* JokeModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

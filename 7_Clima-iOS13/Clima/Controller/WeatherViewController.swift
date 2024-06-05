@@ -16,9 +16,12 @@ class WeatherViewController: UIViewController {
   @IBOutlet weak var cityLabel: UILabel!
   @IBOutlet weak var searchField: UITextField!
   @IBOutlet weak var backgroundImage: UIImageView!
+  @IBOutlet weak var jokeField: UITextView!
+  @IBOutlet weak var jokeButton: UIButton!
   
   //MARK: Properties
   var weatherManager = WeatherDataManager()
+  var jokeManager = JokeDataManager()
   let locationManager = CLLocationManager()
   
   override func viewDidLoad() {
@@ -27,9 +30,9 @@ class WeatherViewController: UIViewController {
     locationManager.delegate = self
     weatherManager.delegate = self
     searchField.delegate = self
+    jokeManager.delegate = self
+    jokeButton.setTitle("Dad Joke", for: .normal)
   }
-  
-  
 }
 
 //MARK:- TextField extension
@@ -40,6 +43,10 @@ extension WeatherViewController: UITextFieldDelegate {
     print(searchField.text!)
     
     searchWeather()
+  }
+  
+  @IBAction func jokeButton(_ sender: UIButton) {
+    jokeManager.fetchJoke()
   }
   
   func changeBackgroundImage(_ cityName: String){
@@ -119,5 +126,13 @@ extension WeatherViewController: CLLocationManagerDelegate {
   }
   func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
     print(error)
+  }
+}
+
+extension WeatherViewController: JokeManagerDelegate {
+  func updateJoke(jokeModel: JokeModel) {
+    DispatchQueue.main.sync {
+      jokeField.text = jokeModel.joke
+    }
   }
 }
