@@ -17,7 +17,8 @@ class WeatherViewController: UIViewController {
   @IBOutlet weak var searchField: UITextField!
   @IBOutlet weak var backgroundImage: UIImageView!
   @IBOutlet weak var jokeField: UITextView!
-
+  @IBOutlet weak var jokeButton: UIButton!
+  
   //MARK: Properties
   var weatherManager = WeatherDataManager()
   var jokeManager = JokeDataManager()
@@ -30,6 +31,7 @@ class WeatherViewController: UIViewController {
     weatherManager.delegate = self
     searchField.delegate = self
     jokeManager.delegate = self
+    jokeButton.setTitle("Dad Joke", for: .normal)
   }
 }
 
