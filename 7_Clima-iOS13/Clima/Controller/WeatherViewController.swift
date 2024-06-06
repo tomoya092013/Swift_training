@@ -22,7 +22,7 @@ class WeatherViewController: UIViewController {
   //MARK: Properties
   var weatherManager = WeatherDataManager()
   let locationManager = CLLocationManager()
-  let commonApi = CommonApi()
+	let commonApi = CommonApi()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -39,7 +39,6 @@ extension WeatherViewController: UITextFieldDelegate {
   @IBAction func searchBtnClicked(_ sender: UIButton) {
     searchField.endEditing(true)    //dismiss keyboard
     print(searchField.text!)
-    
     searchWeather()
   }
   
@@ -52,29 +51,27 @@ extension WeatherViewController: UITextFieldDelegate {
   }
   
   func searchWeather(){
-    if let cityName = searchField.text {
-      let createdUrl = weatherManager.createFetchUrl(cityName)
-      if let url = URL(string: createdUrl) {
-        commonApi.getRequest(url: url, type: WeatherData.self,completionHandler: { (weatherData: WeatherData) in
-          DispatchQueue.main.sync {
-            let weatherModel = WeatherModel(cityName: weatherData.name, conditionId: weatherData.weather[0].id, temperature: weatherData.main.temp)
-            let conditionName = weatherModel.conditionName
-            let cityName = weatherModel.cityName
-            self.temperatureLabel.text = weatherModel.temperatureString
-            self.conditionImageView.image = UIImage(systemName: conditionName)
-            self.changeBackgroundImage(cityName)}
-        }, failedWithError: { (error) in
-          print(error)
-        })
-      }
+    guard let cityName = searchField.text,
+          let url = URL(string: weatherManager.createFetchUrl(cityName))
+    			else { return }
+    
+    commonApi.getRequest(url: url, type: WeatherData.self) { (weatherData: WeatherData) in
+      DispatchQueue.main.sync {
+        let weatherModel = WeatherModel(cityName: weatherData.name, conditionId: weatherData.weather[0].id, temperature: weatherData.main.temp)
+        let conditionName = weatherModel.conditionName
+        let cityName = weatherModel.cityName
+        self.temperatureLabel.text = weatherModel.temperatureString
+        self.conditionImageView.image = UIImage(systemName: conditionName)
+        self.changeBackgroundImage(cityName)}
+    } failedWithError: { (error) in
+      print(error)
     }
-  }
+	}
   
   // when keyboard return clicked
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     searchField.endEditing(true)    //dismiss keyboard
     print(searchField.text!)
-    
     searchWeather()
     return true
   }
@@ -96,17 +93,14 @@ extension WeatherViewController: UITextFieldDelegate {
   }
   
   @IBAction func jokeButton(_ sender: UIButton) {
-    
-    if let url = URL(string: "https://icanhazdadjoke.com/") {
-      
-      commonApi.getRequest(url: url, type: JokeData.self, completionHandler: { (jokeData: JokeData) in
-        DispatchQueue.main.sync {
-          let jokeModel = JokeModel(joke: jokeData.joke)
-          self.jokeField.text = jokeModel.joke
-        }
-      }, failedWithError: {(error) in
-        print(error)
-      })
+    guard let url = URL(string: "https://icanhazdadjoke.com/") else { return }
+    commonApi.getRequest(url: url, type: JokeData.self) { (jokeData: JokeData) in
+      DispatchQueue.main.sync {
+        let jokeModel = JokeModel(joke: jokeData.joke)
+        self.jokeField.text = jokeModel.joke
+      }
+    } failedWithError: { (error) in
+      print(error)
     }
   }
 }
@@ -120,18 +114,16 @@ extension WeatherViewController: CLLocationManagerDelegate {
     locationManager.requestLocation()
   }
   
-  
   func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-    if let location = locations.last {
-      let lat = location.coordinate.latitude
-      let lon = location.coordinate.longitude
-      let createdUrl = weatherManager.createFetchUrl(lat, lon)
-      if let url = URL(string: createdUrl) {
-        commonApi.getRequest(url: url, type: WeatherData.self,completionHandler: { (weatherData: WeatherData) in
-          print(weatherData)
-        }, failedWithError: { (error) in
-          print(error)
-        })
+    guard let location = locations.last else { return }
+    let lat = location.coordinate.latitude
+    let lon = location.coordinate.longitude
+    let createdUrl = weatherManager.createFetchUrl(lat, lon)
+    if let url = URL(string: createdUrl) {
+      commonApi.getRequest(url: url, type: WeatherData.self) { (weatherData: WeatherData) in
+        print(weatherData)
+      } failedWithError: { (error) in
+        print(error)
       }
     }
   }
