@@ -22,7 +22,7 @@ class WeatherViewController: UIViewController {
   //MARK: Properties
   var weatherManager = WeatherDataManager()
   let locationManager = CLLocationManager()
-	let commonApi = CommonApi()
+  let commonApi = CommonApi()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -53,8 +53,7 @@ extension WeatherViewController: UITextFieldDelegate {
   func searchWeather(){
     guard let cityName = searchField.text,
           let url = URL(string: weatherManager.createFetchUrl(cityName))
-    			else { return }
-    
+    else { return }
     commonApi.getRequest(url: url, type: WeatherData.self) { (weatherData: WeatherData) in
       DispatchQueue.main.sync {
         let weatherModel = WeatherModel(cityName: weatherData.name, conditionId: weatherData.weather[0].id, temperature: weatherData.main.temp)
@@ -119,12 +118,11 @@ extension WeatherViewController: CLLocationManagerDelegate {
     let lat = location.coordinate.latitude
     let lon = location.coordinate.longitude
     let createdUrl = weatherManager.createFetchUrl(lat, lon)
-    if let url = URL(string: createdUrl) {
-      commonApi.getRequest(url: url, type: WeatherData.self) { (weatherData: WeatherData) in
-        print(weatherData)
-      } failedWithError: { (error) in
-        print(error)
-      }
+    guard let url = URL(string: createdUrl) else { return }
+    commonApi.getRequest(url: url, type: WeatherData.self) { (weatherData: WeatherData) in
+      print(weatherData)
+    } failedWithError: { (error) in
+      print(error)
     }
   }
   
