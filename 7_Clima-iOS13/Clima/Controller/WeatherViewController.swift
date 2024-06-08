@@ -18,6 +18,7 @@ class WeatherViewController: UIViewController {
   @IBOutlet weak var backgroundImage: UIImageView!
   @IBOutlet weak var jokeField: UITextView!
   @IBOutlet weak var jokeButton: UIButton!
+  @IBOutlet weak var favoriteButton: UIButton!
   
   //MARK: Properties
   var weatherManager = WeatherDataManager()
@@ -30,6 +31,20 @@ class WeatherViewController: UIViewController {
     locationManager.delegate = self
     searchField.delegate = self
     jokeButton.setTitle("Dad Joke", for: .normal)
+    favoriteButton.setTitle("お気に入り", for: .normal)
+    favoriteButton.setTitleColor(.link, for: .normal)
+    title = "天気"
+    navigationItem.backBarButtonItem = UIBarButtonItem(title:  "", style:  .plain, target: nil,action: nil)
+    
+    let appearance = UINavigationBarAppearance()
+    appearance.configureWithOpaqueBackground()
+    appearance.backgroundColor = .clear
+    appearance.shadowColor = .clear
+    
+    navigationItem.standardAppearance = appearance
+    navigationItem.scrollEdgeAppearance = appearance
+    navigationItem.compactAppearance = appearance
+
   }
 }
 
@@ -101,6 +116,11 @@ extension WeatherViewController: UITextFieldDelegate {
     } failedWithError: { (error) in
       print(error)
     }
+  }
+  
+  @IBAction func favoriteButton(_ sender: UIButton) {
+    let favoriteList = FavoriteListController()
+    navigationController?.pushViewController(favoriteList, animated: true)
   }
 }
 
