@@ -119,8 +119,8 @@ extension WeatherViewController: UITextFieldDelegate {
   }
   
   @IBAction func favoriteButton(_ sender: UIButton) {
-    let favoriteList = FavoriteListController()
-    navigationController?.pushViewController(favoriteList, animated: true)
+    let favoriteTable = FavoriteCityTableController()
+    navigationController?.pushViewController(favoriteTable, animated: true)
   }
 }
 
