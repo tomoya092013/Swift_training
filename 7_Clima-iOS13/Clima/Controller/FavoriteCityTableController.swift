@@ -8,6 +8,7 @@
 
 import UIKit
 
+@available(iOS 15.0, *)
 class FavoriteCityTableController: UIViewController {
   
   var weatherManager = WeatherDataManager()
@@ -35,8 +36,7 @@ class FavoriteCityTableController: UIViewController {
     cityTableView.register(FavoriteCityTableViewCell.nib(), forCellReuseIdentifier: FavoriteCityTableViewCell.identifier)
     cityTableView.sectionIndexBackgroundColor = .blue
     cityTableView.sectionIndexTrackingBackgroundColor = .red
-    
-    
+    cityTableView.sectionHeaderTopPadding = 1
   }
   
   private let headerArray: [String] = ["ヨーロッパ", "アジア", "オセアニア", "アフリカ"]
@@ -53,9 +53,10 @@ class FavoriteCityTableController: UIViewController {
   ]
 }
 
+@available(iOS 15.0, *)
 extension FavoriteCityTableController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return favoriteCityArray[section].cityArray.count
+    return favoriteCityArray[section].isShown ? favoriteCityArray[section].cityArray.count : 0
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -74,6 +75,7 @@ extension FavoriteCityTableController: UITableViewDataSource {
   }
 }
 
+@available(iOS 15.0, *)
 extension FavoriteCityTableController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
     guard let header = view as? UITableViewHeaderFooterView else { return }
@@ -89,5 +91,23 @@ extension FavoriteCityTableController: UITableViewDelegate {
     navigationController?.pushViewController(favoriteCity, animated: true)
     
     tableView.deselectRow(at: indexPath, animated: true)
+  }
+  
+  func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    let headerView = UITableViewHeaderFooterView()
+    let gesture = UITapGestureRecognizer(target: self, action: #selector(headertapped(sender:)))
+    headerView.addGestureRecognizer(gesture)
+    headerView.tag = section
+    return headerView
+  }
+  
+  @objc func headertapped(sender: UITapGestureRecognizer) {
+    guard let section = sender.view?.tag else {
+      return
+    }
+    favoriteCityArray[section].isShown.toggle()
+    cityTableView.beginUpdates()
+    cityTableView.reloadSections([section], with: .automatic)
+    cityTableView.endUpdates()
   }
 }
