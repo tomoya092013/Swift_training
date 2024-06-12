@@ -33,7 +33,7 @@ class FavoriteCityTableController: UIViewController {
     cityTableView.dataSource = self
     cityTableView.delegate = self
     
-    cityTableView.register(FavoriteCityTableViewCell.nib(), forCellReuseIdentifier: FavoriteCityTableViewCell.identifier)
+    cityTableView.register(UINib(nibName: "FavoriteCityTableCell", bundle: nil), forCellReuseIdentifier: "FavoriteCityTableCell")
     cityTableView.sectionIndexBackgroundColor = .blue
     cityTableView.sectionIndexTrackingBackgroundColor = .red
     cityTableView.sectionHeaderTopPadding = 1
@@ -60,7 +60,7 @@ extension FavoriteCityTableController: UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = cityTableView.dequeueReusableCell(withIdentifier: FavoriteCityTableViewCell.identifier)
+    let cell = cityTableView.dequeueReusableCell(withIdentifier: "FavoriteCityTableCell")
     cell?.textLabel?.text = favoriteCityArray[indexPath.section].cityArray[indexPath.row]
     
     return cell!

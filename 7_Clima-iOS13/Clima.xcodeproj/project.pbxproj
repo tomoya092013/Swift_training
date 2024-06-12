@@ -110,8 +110,6 @@
 				ADAA27B4231BBFAF00365194 /* WeatherViewController.swift */,
 				9F8E77D92C144695005C06C4 /* FavoriteCityTableController.swift */,
 				9FA523122C1486A900644D0F /* FavoriteCityTableController.xib */,
-				9FA523142C14893200644D0F /* FavoriteCityTableCell.swift */,
-				9FA523152C14893200644D0F /* FavoriteCityTableCell.xib */,
 				9FA83D672C14D550001D4E40 /* FavoriteCityController.swift */,
 				9FA83D612C14D2CB001D4E40 /* FavoriteCityController.xib */,
 			);
@@ -121,6 +119,8 @@
 		ADAA27C9231BC3F200365194 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9FA523142C14893200644D0F /* FavoriteCityTableCell.swift */,
+				9FA523152C14893200644D0F /* FavoriteCityTableCell.xib */,
 				ADAA27B6231BBFAF00365194 /* Main.storyboard */,
 			);
 			path = View;

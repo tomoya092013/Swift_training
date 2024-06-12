@@ -14,19 +14,12 @@ class FavoriteCityTableViewCell: UITableViewCell {
   override func awakeFromNib() {
     super.awakeFromNib()
     // Initialization code
+    NextButton.setTitle("＞", for: .normal)
+    NextButton.setTitleColor(.black, for: .normal)
   }
   
   override func setSelected(_ selected: Bool, animated: Bool) {
     super.setSelected(selected, animated: animated)
     
-    NextButton.setTitle("＞", for: .normal)
-    NextButton.setTitleColor(.black, for: .normal)
   }
-  
-  static let identifier = "FavoriteCityTableCell"
-
-  static func nib() -> UINib {
-    return UINib(nibName: "FavoriteCityTableCell", bundle: nil)
-  }
-  
 }
