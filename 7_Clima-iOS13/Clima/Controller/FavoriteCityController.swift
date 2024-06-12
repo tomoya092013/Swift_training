@@ -15,9 +15,18 @@ class FavoriteCityController: UIViewController {
   @IBOutlet weak var conditionImageView: UIImageView!
   @IBOutlet weak var temperatureLabel: UILabel!
   
-  var weatherManager = WeatherDataManager()
   var commonApi = CommonApi()
-  var outputUrl: URL?
+  var apiResult: WeatherData
+  
+  init(weatherData: WeatherData) {
+    self.apiResult = weatherData
+    super.init(nibName: nil, bundle: nil)
+  }
+  
+  required init?(coder: NSCoder) {
+    
+    fatalError("init(coder:) has not been implemented")
+  }
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -31,22 +40,15 @@ class FavoriteCityController: UIViewController {
     navigationItem.scrollEdgeAppearance = appearance
     navigationItem.compactAppearance = appearance
     
-    updateWeather(url: outputUrl!)
-    
+    setWeatherData(weatherData: apiResult)
   }
-  
-  func updateWeather(url: URL) {
-    guard let url = outputUrl else { return }
-    commonApi.getRequest(url: url, type: WeatherData.self) { (weatherData: WeatherData) in
-      DispatchQueue.main.sync {
-        let weatherModel = WeatherModel(cityName: weatherData.name, conditionId: weatherData.weather[0].id, temperature: weatherData.main.temp)
-        let conditionName = weatherModel.conditionName
-        self.cityLavel.text = weatherModel.cityName
-        self.temperatureLabel.text = weatherModel.temperatureString
-        self.conditionImageView.image = UIImage(systemName: conditionName)
-        self.title = weatherModel.cityName}
-    } failedWithError: { (error) in
-      print(error)
-    }
+    
+  func setWeatherData(weatherData: WeatherData) {
+    let weatherModel = WeatherModel(cityName: weatherData.name, conditionId: weatherData.weather[0].id, temperature: weatherData.main.temp)
+    let conditionName = weatherModel.conditionName
+    self.cityLavel.text = weatherModel.cityName
+    self.temperatureLabel.text = weatherModel.temperatureString
+    self.conditionImageView.image = UIImage(systemName: conditionName)
+    self.title = weatherModel.cityName
   }
 }

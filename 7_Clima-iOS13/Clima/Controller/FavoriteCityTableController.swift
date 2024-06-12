@@ -86,10 +86,14 @@ extension FavoriteCityTableController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let selectCity = favoriteCityArray[indexPath.section].cityArray[indexPath.row]
     guard let url = URL(string: weatherManager.createFetchUrl(selectCity)) else { return }
-    let favoriteCity = FavoriteCityController()
-    favoriteCity.outputUrl = url
-    navigationController?.pushViewController(favoriteCity, animated: true)
-    
+    commonApi.getRequest(url: url, type: WeatherData.self) { (weatherData: WeatherData) in
+      DispatchQueue.main.sync {
+        let favoriteCityVC = FavoriteCityController(weatherData: weatherData)
+        self.navigationController?.pushViewController(favoriteCityVC, animated: true)
+      }
+    } failedWithError: { (error) in
+      print(error)
+    }
     tableView.deselectRow(at: indexPath, animated: true)
   }
   
