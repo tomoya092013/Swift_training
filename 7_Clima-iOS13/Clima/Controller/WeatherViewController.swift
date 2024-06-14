@@ -9,6 +9,7 @@
 import UIKit
 import CoreLocation
 
+@available(iOS 15.0, *)
 class WeatherViewController: UIViewController {
   
   @IBOutlet weak var conditionImageView: UIImageView!
@@ -49,6 +50,7 @@ class WeatherViewController: UIViewController {
 }
 
 //MARK:- TextField extension
+@available(iOS 15.0, *)
 extension WeatherViewController: UITextFieldDelegate {
   
   @IBAction func searchBtnClicked(_ sender: UIButton) {
@@ -119,12 +121,13 @@ extension WeatherViewController: UITextFieldDelegate {
   }
   
   @IBAction func favoriteButton(_ sender: UIButton) {
-    let favoriteList = FavoriteListController()
-    navigationController?.pushViewController(favoriteList, animated: true)
+    let favoriteTable = FavoriteCityTableController()
+    navigationController?.pushViewController(favoriteTable, animated: true)
   }
 }
 
 // MARK:- CLLocation
+@available(iOS 15.0, *)
 extension WeatherViewController: CLLocationManagerDelegate {
   
   @IBAction func locationButtonClicked(_ sender: UIButton) {
