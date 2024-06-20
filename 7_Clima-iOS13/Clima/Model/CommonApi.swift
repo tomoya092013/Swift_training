@@ -15,7 +15,7 @@ class CommonApi {
     
     let session = URLSession(configuration: .default)
     var request = URLRequest(url: url)
-    request.setValue("application/json", forHTTPHeaderField: "Accept")
+    request.setValue(R.string.localizable.applicationJSON(), forHTTPHeaderField: R.string.localizable.accept())
     
     let task = session.dataTask(with: request) { (data, response, error) in
       

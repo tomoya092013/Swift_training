@@ -10,8 +10,7 @@ import Foundation
 
 //MARK: DataManager struct
 struct WeatherDataManager{
-    let baseURL = "https://api.openweathermap.org/data/2.5/weather?appid=4e415e4ab2aaed09e04d8419beedee19&units=metric"
-    
+  let baseURL = R.string.localizable.weatherApi()
     //MARK:- fetchWeather
     func createFetchUrl(_ city: String) -> String {
         let completeURL = "\(baseURL)&q=\(city)"

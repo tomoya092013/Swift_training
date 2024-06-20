@@ -3,14 +3,16 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		7D64259624473AE800F1DD90 /* WeatherDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D64259524473AE800F1DD90 /* WeatherDataManager.swift */; };
 		7D6425982451AEA500F1DD90 /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6425972451AEA500F1DD90 /* WeatherData.swift */; };
 		7DB97A2C24585AB800C3BB03 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB97A2B24585AB800C3BB03 /* WeatherModel.swift */; };
+		9F2870452C2308DB00D4709B /* RswiftLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 9F2870442C2308DB00D4709B /* RswiftLibrary */; };
 		9F47F8C02C0DF84B009ED54A /* light_background.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 9F47F8BF2C0DF84B009ED54A /* light_background.pdf */; };
+		9F6707C62C243C4B00311618 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9F6707C52C243C4B00311618 /* Localizable.strings */; };
 		9F8E77DA2C144695005C06C4 /* FavoriteCityTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8E77D92C144695005C06C4 /* FavoriteCityTableController.swift */; };
 		9FA5230D2C1451F800644D0F /* FavoriteCityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA5230C2C1451F800644D0F /* FavoriteCityModel.swift */; };
 		9FA523132C1486A900644D0F /* FavoriteCityTableController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FA523122C1486A900644D0F /* FavoriteCityTableController.xib */; };
@@ -36,6 +38,7 @@
 		7D6425972451AEA500F1DD90 /* WeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
 		7DB97A2B24585AB800C3BB03 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 		9F47F8BF2C0DF84B009ED54A /* light_background.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = light_background.pdf; path = "../../../../Swift-tutorial/7_Clima-iOS13/Clima/light_background.pdf"; sourceTree = "<group>"; };
+		9F6707C42C243C4B00311618 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9F8E77D92C144695005C06C4 /* FavoriteCityTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteCityTableController.swift; sourceTree = "<group>"; };
 		9FA5230C2C1451F800644D0F /* FavoriteCityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCityModel.swift; sourceTree = "<group>"; };
 		9FA523122C1486A900644D0F /* FavoriteCityTableController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FavoriteCityTableController.xib; sourceTree = "<group>"; };
@@ -63,18 +66,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F2870452C2308DB00D4709B /* RswiftLibrary in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9F2870462C23090B00D4709B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		ADAA27A4231BBFAF00365194 = {
 			isa = PBXGroup;
 			children = (
 				ADAA27CD231BC87F00365194 /* README.md */,
 				ADAA27AF231BBFAF00365194 /* Clima */,
 				ADAA27AE231BBFAF00365194 /* Products */,
+				9F2870462C23090B00D4709B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 			usesTabs = 0;
@@ -90,6 +102,7 @@
 		ADAA27AF231BBFAF00365194 /* Clima */ = {
 			isa = PBXGroup;
 			children = (
+				9F6707C52C243C4B00311618 /* Localizable.strings */,
 				ADAA27B0231BBFAF00365194 /* AppDelegate.swift */,
 				ADAA27B2231BBFAF00365194 /* SceneDelegate.swift */,
 				ADAA27CA231BC3FA00365194 /* Model */,
@@ -154,8 +167,12 @@
 			buildRules = (
 			);
 			dependencies = (
+				9F2870482C23093500D4709B /* PBXTargetDependency */,
 			);
 			name = Clima;
+			packageProductDependencies = (
+				9F2870442C2308DB00D4709B /* RswiftLibrary */,
+			);
 			productName = Clima;
 			productReference = ADAA27AD231BBFAF00365194 /* Clima.app */;
 			productType = "com.apple.product-type.application";
@@ -184,6 +201,9 @@
 				Base,
 			);
 			mainGroup = ADAA27A4231BBFAF00365194;
+			packageReferences = (
+				9F2870432C2308DB00D4709B /* XCRemoteSwiftPackageReference "R" */,
+			);
 			productRefGroup = ADAA27AE231BBFAF00365194 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -203,6 +223,7 @@
 				9FA523172C14893200644D0F /* FavoriteCityTableCell.xib in Resources */,
 				ADAA27C7231BC02C00365194 /* dark_background.pdf in Resources */,
 				ADAA27BD231BBFB300365194 /* LaunchScreen.storyboard in Resources */,
+				9F6707C62C243C4B00311618 /* Localizable.strings in Resources */,
 				9FA83D622C14D2CB001D4E40 /* FavoriteCityController.xib in Resources */,
 				9F47F8C02C0DF84B009ED54A /* light_background.pdf in Resources */,
 				ADAA27BA231BBFB300365194 /* Assets.xcassets in Resources */,
@@ -235,7 +256,22 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		9F2870482C23093500D4709B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 9F2870472C23093500D4709B /* RswiftGenerateInternalResources */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
+		9F6707C52C243C4B00311618 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9F6707C42C243C4B00311618 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		ADAA27B6231BBFAF00365194 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -427,6 +463,29 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		9F2870432C2308DB00D4709B /* XCRemoteSwiftPackageReference "R" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mac-cain13/R.swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.5.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9F2870442C2308DB00D4709B /* RswiftLibrary */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9F2870432C2308DB00D4709B /* XCRemoteSwiftPackageReference "R" */;
+			productName = RswiftLibrary;
+		};
+		9F2870472C23093500D4709B /* RswiftGenerateInternalResources */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = "plugin:RswiftGenerateInternalResources";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = ADAA27A5231BBFAF00365194 /* Project object */;
 }

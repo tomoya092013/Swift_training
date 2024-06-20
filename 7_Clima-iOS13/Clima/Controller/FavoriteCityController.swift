@@ -25,7 +25,7 @@ class FavoriteCityController: UIViewController {
   
   required init?(coder: NSCoder) {
     
-    fatalError("init(coder:) has not been implemented")
+    fatalError(R.string.localizable.fatalError())
   }
   
   override func viewDidLoad() {
@@ -33,8 +33,8 @@ class FavoriteCityController: UIViewController {
     
     let appearance = UINavigationBarAppearance()
     appearance.configureWithOpaqueBackground()
-    appearance.backgroundColor = .clear
-    appearance.shadowColor = .clear
+    appearance.backgroundColor = R.color.clear()
+    appearance.shadowColor = R.color.clear()
     
     navigationItem.standardAppearance = appearance
     navigationItem.scrollEdgeAppearance = appearance

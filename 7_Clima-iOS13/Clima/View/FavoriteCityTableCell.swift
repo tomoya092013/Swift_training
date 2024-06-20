@@ -14,8 +14,8 @@ class FavoriteCityTableViewCell: UITableViewCell {
   override func awakeFromNib() {
     super.awakeFromNib()
     // Initialization code
-    NextButton.setTitle("＞", for: .normal)
-    NextButton.setTitleColor(.black, for: .normal)
+    NextButton.setTitle(R.string.localizable.nextLabel(), for: .normal)
+    NextButton.setTitleColor(R.color.label(), for: .normal)
   }
   
   override func setSelected(_ selected: Bool, animated: Bool) {

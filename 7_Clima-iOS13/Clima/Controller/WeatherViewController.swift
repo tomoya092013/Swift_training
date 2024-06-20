@@ -31,16 +31,16 @@ class WeatherViewController: UIViewController {
     
     locationManager.delegate = self
     searchField.delegate = self
-    jokeButton.setTitle("Dad Joke", for: .normal)
-    favoriteButton.setTitle("お気に入り", for: .normal)
-    favoriteButton.setTitleColor(.link, for: .normal)
-    title = "天気"
-    navigationItem.backBarButtonItem = UIBarButtonItem(title:  "", style:  .plain, target: nil,action: nil)
+    jokeButton.setTitle(R.string.localizable.dadJoke(), for: .normal)
+    favoriteButton.setTitle(R.string.localizable.favorite(), for: .normal)
+    favoriteButton.setTitleColor(R.color.link(), for: .normal)
+    title = R.string.localizable.weatherTitle()
+    navigationItem.backBarButtonItem = UIBarButtonItem(title:  R.string.localizable.nonTitle(), style:  .plain, target: nil,action: nil)
     
     let appearance = UINavigationBarAppearance()
     appearance.configureWithOpaqueBackground()
-    appearance.backgroundColor = .clear
-    appearance.shadowColor = .clear
+    appearance.backgroundColor = R.color.clear()
+    appearance.shadowColor = R.color.clear()
     
     navigationItem.standardAppearance = appearance
     navigationItem.scrollEdgeAppearance = appearance
@@ -60,10 +60,10 @@ extension WeatherViewController: UITextFieldDelegate {
   }
   
   func changeBackgroundImage(_ cityName: String){
-    if cityName == "Tokyo" {
+    if cityName == R.string.localizable.changeBgCity() {
       backgroundImage.image = UIImage(named: "AppIcon")
     } else {
-      backgroundImage.image = UIImage(named: "background")
+      backgroundImage.image = R.image.background()
     }
   }
   
@@ -98,7 +98,7 @@ extension WeatherViewController: UITextFieldDelegate {
     if textField.text != "" {
       return true
     }else{
-      textField.placeholder = "Type something here"
+      textField.placeholder = R.string.localizable.weatherPlaceholder()
       return false            // check if city name is valid
     }
   }
@@ -109,7 +109,7 @@ extension WeatherViewController: UITextFieldDelegate {
   }
   
   @IBAction func jokeButton(_ sender: UIButton) {
-    guard let url = URL(string: "https://icanhazdadjoke.com/") else { return }
+    guard let url = URL(string: R.string.localizable.jokeApi()) else { return }
     commonApi.getRequest(url: url, type: JokeData.self) { (jokeData: JokeData) in
       DispatchQueue.main.sync {
         let jokeModel = JokeModel(joke: jokeData.joke)
