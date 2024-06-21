@@ -22,23 +22,23 @@ struct WeatherModel {
         // docs https://openweathermap.org/weather-conditions
         switch conditionId/100 {
         case 2:
-            return "cloud.bolt"
+          return R.string.localizable.bolt()
         case 3:
-            return "cloud.drizzle"
+            return R.string.localizable.drizzle()
         case 5:
-            return "cloud.rain"
+            return R.string.localizable.rain()
         case 6:
-            return "cloud.snow"
+            return R.string.localizable.snow()
         case 7:
-            return "cloud.fog"
+            return R.string.localizable.fog()
         case 8:
             if conditionId == 800 {
-                return "sun.max"
+              return R.string.localizable.sun()
             } else {
-                return "cloud.bolt"
+                return R.string.localizable.bolt()
             }
         default:
-            return "cloud"
+          return R.string.localizable.cloud()
         }
     }
     
